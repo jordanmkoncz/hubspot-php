@@ -2,17 +2,19 @@
 
 [![Version](https://img.shields.io/packagist/v/hubspot/hubspot-php.svg?style=flat-square)](https://packagist.org/packages/hubspot/hubspot-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/hubspot/hubspot-php.svg?style=flat-square)](https://packagist.org/packages/hubspot/hubspot-php)
+[![Build Status](https://travis-ci.org/hubspot/hubspot-php.svg?branch=master)](https://travis-ci.org/hubspot/hubspot-php)
 [![License](https://img.shields.io/packagist/l/hubspot/hubspot-php.svg?style=flat-square)](https://packagist.org/packages/hubspot/hubspot-php)
 
-Hubspot API client. The sequel to my [perfectly functional wrapper](https://github.com/fungku/hubspot) of HubSpot/haPihP.
-client. However, this is a complete re-write and includes some of the new COS/v2 endpoints.
+## About
+
+This is a fork of the https://github.com/HubSpot/hubspot-php repository that supports PHP 5.5 and includes the `createWithOAuth2Token` factory method.
 
 ## Setup
 
 **Composer:**
 
 ```bash
-composer require "hubspot/hubspot-php:~1.0"
+composer require "hubspot/hubspot-php"
 ```
 
 ## Quickstart
@@ -24,23 +26,24 @@ All following examples assume this step.
 ```php
 $hubspot = SevenShores\Hubspot\Factory::create('api-key');
 
+// OR create with OAuth2 access token
+
+$hubspot = SevenShores\Hubspot\Factory::createWithOAuth2Token('access-token');
+
 // OR instantiate by passing a configuration array.
 // The only required value is the 'key'
 
 $hubspot = new SevenShores\Hubspot\Factory([
   'key'      => 'demo',
-  'oauth'    => false, // default
-  'base_url' => 'https://api.hubapi.com' // default
+  'oauth2'   => 'false', // default
 ]);
 ```
 *Note:* You can prevent any error handling provided by this package by passing following options into client creation routine:
-(applies also to `Factory::create()` and `Factory::createWithToken()`)
+(applies also to `Factory::create()` and `Factory::createWithOAuth2Token()`)
 
 ```php
 $hubspot = new SevenShores\Hubspot\Factory([
   'key'      => 'demo',
-  'oauth'    => false, // default
-  'base_url' => 'https://api.hubapi.com' // default
 ],
 null,
 [
@@ -184,6 +187,7 @@ If you see something not planned, that you want, make an [issue](https://github.
 - [x] Contacts
 - [x] Contact Lists
 - [x] Contact Properties
+- [x] CRM Pipelines :new:
 - [x] Deals :new:
 - [x] Email :new:
 - [x] Email Events :new:
